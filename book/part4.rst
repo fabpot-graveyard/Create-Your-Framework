@@ -162,7 +162,7 @@ With this knowledge in mind, let's write the new version of our framework::
     use Symfony\Component\Routing;
 
     $request = Request::createFromGlobals();
-    $routes = include __DIR__.'/../src/app.php';
+    include __DIR__.'/../src/app.php';
 
     $context = new Routing\RequestContext();
     $context->fromRequest($request);
