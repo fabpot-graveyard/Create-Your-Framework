@@ -154,6 +154,15 @@ Response::
 
     public function testControllerResponse()
     {
+        $request_context = new RequestContext();
+        $request_context->fromRequest(new Request());
+
+        $matcher
+          ->expects($this->once())
+          ->method('getContext')
+          ->will($this->returnValue($request_context))
+        ;
+
         $matcher = $this->getMock('Symfony\Component\Routing\Matcher\UrlMatcherInterface');
         $matcher
             ->expects($this->once())
