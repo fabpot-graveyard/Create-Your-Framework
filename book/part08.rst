@@ -79,6 +79,7 @@ We are now ready to write our first test::
 
     use Simplex\Framework;
     use Symfony\Component\HttpFoundation\Request;
+    use Symfony\Component\Routing\RequestContext;
     use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
     class FrameworkTest extends \PHPUnit_Framework_TestCase
@@ -94,11 +95,19 @@ We are now ready to write our first test::
 
         protected function getFrameworkForException($exception)
         {
+            $request_context =  new RequestContext();
+            $request_context->fromRequest(new Request());
+
             $matcher = $this->getMock('Symfony\Component\Routing\Matcher\UrlMatcherInterface');
             $matcher
                 ->expects($this->once())
                 ->method('match')
                 ->will($this->throwException($exception))
+            ;
+            $matcher
+              ->expects($this->once())
+              ->method('getContext')
+              ->will($this->returnValue($request_context))
             ;
             $resolver = $this->getMock('Symfony\Component\HttpKernel\Controller\ControllerResolverInterface');
 
@@ -145,6 +154,15 @@ Response::
 
     public function testControllerResponse()
     {
+        $request_context = new RequestContext();
+        $request_context->fromRequest(new Request());
+
+        $matcher
+          ->expects($this->once())
+          ->method('getContext')
+          ->will($this->returnValue($request_context))
+        ;
+
         $matcher = $this->getMock('Symfony\Component\Routing\Matcher\UrlMatcherInterface');
         $matcher
             ->expects($this->once())
