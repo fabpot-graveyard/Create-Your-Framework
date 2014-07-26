@@ -104,7 +104,7 @@ Such a script might look like the following::
     if (isset($map[$path])) {
         require $map[$path];
     } else {
-        $response->setStatusCode(404);
+        $response->setStatusCode(Response::HTTP_NOT_FOUND);
         $response->setContent('Not Found');
     }
 
