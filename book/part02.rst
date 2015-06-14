@@ -321,6 +321,7 @@ applications using it (like `Symfony2`_, `Drupal 8`_, `phpBB 4`_, `ezPublish
 .. _`Symfony2`:                 http://symfony.com/
 .. _`Drupal 8`:                 http://drupal.org/
 .. _`phpBB 4`:                  http://www.phpbb.com/
+.. _`Laravel`:                  http://laravel.com/
 .. _`Silex`:                    http://silex.sensiolabs.org/
 .. _`Midgard CMS`:              http://www.midgard-project.org/
 .. _`Zikula`:                   http://zikula.org/
